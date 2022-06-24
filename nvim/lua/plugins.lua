@@ -48,6 +48,11 @@ return require('packer').startup(function()
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "rcarriga/nvim-notify" -- notify
   use "kyazdani42/nvim-web-devicons" -- icons
+
+
+  -- Colorschemes
+  -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
+  use "lunarvim/darkplus.nvim"
   
   -- Telescope
   use {
