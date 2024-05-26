@@ -148,6 +148,8 @@ case "$(uname)" in
     
     # bun completions
     [ -s "/Users/hitomi/.bun/_bun" ] && source "/Users/hitomi/.bun/_bun"
+    alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
     ;;
   Linux)
     # Linux specific settings
