@@ -80,6 +80,7 @@ ZSH_THEME="robbyrussell"
 plugins=(
   git
   poetry
+  zsh-proxy
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -110,28 +111,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# zoxide
 eval "$(zoxide init zsh)"
-
-# pnpm
-export PNPM_HOME="/Users/hitomi/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm endexport PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-
-
-# poetry
-export PATH="/Users/hitomi/.local/bin:$PATH"
-
-# bun completions
-[ -s "/Users/hitomi/.bun/_bun" ] && source "/Users/hitomi/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -159,3 +140,31 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# System-specific configurations
+case "$(uname)" in
+  Darwin)
+    # macOS specific settings
+    
+    # bun completions
+    [ -s "/Users/hitomi/.bun/_bun" ] && source "/Users/hitomi/.bun/_bun"
+    ;;
+  Linux)
+    # Linux specific settings
+
+    # bun completions
+    [ -s "/home/hitomi/.bun/_bun" ] && source "/home/hitomi/.bun/_bun"
+
+    # tabtab source for packages
+    # uninstall by removing these lines
+    [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+
+    ## [Completion]
+    ## Completion scripts setup. Remove the following line to uninstall
+    [[ -f /home/hitomi/.dart-cli-completion/zsh-config.zsh ]] && . /home/hitomi/.dart-cli-completion/zsh-config.zsh || true
+    ## [/Completion]
+    
+    alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+    
+    ;;
+esac
