@@ -141,6 +141,17 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# bindkeys
+bindkey -v
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^E' edit-command-line                   # Opens Vim to edit current command line
+bindkey '^R' history-incremental-search-backward # Perform backward search in command line history
+bindkey '^S' history-incremental-search-forward  # Perform forward search in command line history
+bindkey '^P' history-search-backward             # Go back/search in history (autocomplete)
+bindkey '^N' history-search-forward              # Go forward/search in history (autocomplete)
+
+
 # System-specific configurations
 case "$(uname)" in
   Darwin)

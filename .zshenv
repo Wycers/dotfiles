@@ -42,6 +42,10 @@ case "$(uname)" in
     ;;
 esac
 
+# editor
+export EDITOR="nvim"
+export VISUAL="nvim"
+
 # pnpm
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
